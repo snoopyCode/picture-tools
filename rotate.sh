@@ -9,13 +9,11 @@ for f in *.jpg
         elif [ "$orientation" = "6" ]; then
             echo "$f -> $orientationName"
             exiftool -Orientation=1 -n "$f"
-            sips -r -270 "$f" > /dev/null
-            # cp "$f" "rotated/$f"
+            sips -r -270 "$f" > /dev/null # Linux: Use `convert` instead of `sips`
         elif [ "$orientation" = "3" ]; then
             echo "$f -> $orientation -> $orientationName"
-            exiftool -Orientation=1 -n "$f"
+            exiftool -Orientation=1 -n "$f" # Linux: Use `convert` instead of `sips`
             sips -r -180 "$f" > /dev/null
-            # cp "$f" "rotated/$f"
         else
             echo "$f -> Unknown orientation: $orientation"
         fi
